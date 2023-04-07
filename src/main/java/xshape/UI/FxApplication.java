@@ -1,4 +1,4 @@
-package xshape;
+package xshape.UI;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;

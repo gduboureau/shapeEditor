@@ -1,4 +1,4 @@
-package xshape;
+package xshape.UI;
 
 import java.awt.Graphics;
 

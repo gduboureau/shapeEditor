@@ -1,4 +1,4 @@
-package xshape;
+package xshape.UI;
 
 import java.awt.*;
 import javax.swing.*;
@@ -6,6 +6,9 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+
+import xshape.shapeFactory.ShapeFactory;
+import xshape.shapeFactory.ShapeFactoryAwt;
 
 class GUIHelper {
     public static void showOnFrame(JComponent component, String frameName) {
@@ -41,7 +44,7 @@ public class AwtApp extends XShape {
     }
 
     @Override
-    void run() {
+    public void run() {
         JCanvas jc = new JCanvas(this);
         jc.setBackground(Color.WHITE);
         jc.setPreferredSize(new Dimension(500, 500));

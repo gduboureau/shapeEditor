@@ -93,5 +93,13 @@ public class Group implements Shape{
         }
         return this;
     }
+
+    @Override
+    public void addMouseEvents() {
+        Iterator<Shape> iterator = getChild();
+        while (iterator.hasNext()){
+            iterator.next().addMouseEvents();
+        }
+    }
     
 }

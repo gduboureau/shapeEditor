@@ -31,4 +31,8 @@ public class PolygonAwt extends Polygon {
         g.fillPolygon(xPoints, yPoints, getNumSides());
         g.setColor(c);
     }
+
+    @Override
+    public void addMouseEvents() {
+    }
 }

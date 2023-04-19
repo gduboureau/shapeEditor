@@ -4,6 +4,7 @@ import java.awt.geom.Point2D;
 
 public interface Shape{
 	void draw();
+	void addMouseEvents();
 	Point2D size();
 	Shape size(Point2D vec);
 	Point2D position();

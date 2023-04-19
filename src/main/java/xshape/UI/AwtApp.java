@@ -45,10 +45,19 @@ public class AwtApp extends XShape {
 
     @Override
     public void run() {
+        /* Création de la fenetre */
         JCanvas jc = new JCanvas(this);
         jc.setBackground(Color.WHITE);
         jc.setPreferredSize(new Dimension(500, 500));
-        GUIHelper.showOnFrame(jc, "XShape Swing/AWT Rendering");        
+        GUIHelper.showOnFrame(jc, "XShape Swing/AWT Rendering");
+
+        /* Creation des toolBar Horizontal et Vertical */
+        AwtToolBar toolBar = new AwtToolBar();
+        JToolBar toolBarH = toolBar.createToolBarH();
+        JToolBar toolBarV = toolBar.createToolBarV();
+        jc.setLayout(new BorderLayout());
+        jc.add(toolBarH, BorderLayout.NORTH);
+        jc.add(toolBarV, BorderLayout.WEST);
     }
 }
 

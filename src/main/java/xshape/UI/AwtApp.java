@@ -53,11 +53,9 @@ public class AwtApp extends XShape {
 
         /* Creation des toolBar Horizontal et Vertical */
         AwtToolBar toolBar = new AwtToolBar();
-        JToolBar toolBarH = toolBar.createToolBarH();
-        JToolBar toolBarV = toolBar.createToolBarV();
         jc.setLayout(new BorderLayout());
-        jc.add(toolBarH, BorderLayout.NORTH);
-        jc.add(toolBarV, BorderLayout.WEST);
+        jc.add(toolBar.createToolBarH(), BorderLayout.NORTH);
+        jc.add(toolBar.createToolBarV(), BorderLayout.WEST);
     }
 }
 

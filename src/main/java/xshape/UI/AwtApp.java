@@ -2,6 +2,9 @@ package xshape.UI;
 
 import java.awt.*;
 import javax.swing.*;
+
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionAdapter;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JComponent;
@@ -26,7 +29,7 @@ class GUIHelper {
 }
 
 public class AwtApp extends XShape {
-    public static JCanvas jc;
+    static JCanvas jc;
     public class JCanvas extends JPanel {
         XShape _xshape = null;
         public JCanvas(XShape xs) {
@@ -42,6 +45,18 @@ public class AwtApp extends XShape {
     @Override
     protected ShapeFactory createFactory() {
         return new ShapeFactoryAwt();
+    }
+
+    public static JCanvas getCanvas(){
+        return jc;
+    }
+
+    public static void addListener(MouseListener mouseListener){
+        jc.addMouseListener(mouseListener);
+    }
+
+    public static void addListener(MouseMotionAdapter mouseMotionAdapter){
+        jc.addMouseMotionListener(mouseMotionAdapter);
     }
 
     @Override

@@ -40,29 +40,31 @@ public class RectangleAwt extends Rectangle {
 		MouseAdapter mouseAdapter = new MouseAdapter() {
 
 			public void mousePressed(MouseEvent e) {
-				mousePosX = e.getX() + size().getX()/2;
-				mousePosY = e.getY() + size().getY()/2;	
+				mousePosX = e.getX();
+				mousePosY = e.getY();	
 			}
 
 		};
-		AwtApp.jc.addMouseListener(mouseAdapter);
+		AwtApp.addListener(mouseAdapter);
 	
 		MouseMotionAdapter motionAdapter = new MouseMotionAdapter() {
 			public void mouseDragged(MouseEvent e) {
 				double xmax = position().getX() + size().getX();
 				double ymax = position().getY() + size().getY();
-				if (mousePosX >= position().getX() && mousePosX <= xmax && mousePosY >= position().getY() && mousePosY <= ymax){
+				double mousePosXcheck = mousePosX + size().getX()/2;
+				double mousePosYcheck = mousePosY + size().getY()/2;
+				if (mousePosXcheck >= position().getX() && mousePosXcheck <= xmax && mousePosYcheck >= position().getY() && mousePosYcheck <= ymax){
 					double deltaX = e.getX() - mousePosX;
 					double deltaY = e.getY() - mousePosY;
 					position(new Point2D.Double(position().getX() + deltaX, position().getY() + deltaY));
 					mousePosX = e.getX();
 					mousePosY = e.getY();
 					draw();
-					AwtApp.jc.repaint();
+					AwtApp.getCanvas().repaint();
 				}
 			}
 		};
-		AwtApp.jc.addMouseMotionListener(motionAdapter);
+		AwtApp.addListener(motionAdapter);
 	}
 	
 

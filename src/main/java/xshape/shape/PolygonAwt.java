@@ -1,12 +1,19 @@
 package xshape.shape;
 
 import java.awt.Graphics;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.awt.Color;
 import java.awt.geom.Point2D;
 
+import xshape.UI.AwtApp;
 import xshape.UI.AwtContext;
 
 public class PolygonAwt extends Polygon {
+
+    private double mousePosX;
+    private double mousePosY;
     
     public PolygonAwt(int numSides, double sideLength, double posX, double posY) {
         super.numSides(numSides).sideLength(sideLength).position(new Point2D.Double(posX, posY));
@@ -32,7 +39,33 @@ public class PolygonAwt extends Polygon {
         g.setColor(c);
     }
 
-    @Override
-    public void addMouseEvents() {
-    }
+	@Override
+	public void addMouseEvents() {
+		MouseAdapter mouseAdapter = new MouseAdapter() {
+
+			public void mousePressed(MouseEvent e) {
+				mousePosX = e.getX() + size().getX()/2;
+				mousePosY = e.getY() + size().getY()/2;	
+			}
+
+		};
+		AwtApp.jc.addMouseListener(mouseAdapter);
+	
+		MouseMotionAdapter motionAdapter = new MouseMotionAdapter() {
+			public void mouseDragged(MouseEvent e) {
+				double xmax = position().getX() + size().getX();
+				double ymax = position().getY() + size().getY();
+				if (mousePosX >= position().getX() && mousePosX <= xmax && mousePosY >= position().getY() && mousePosY <= ymax){
+					double deltaX = e.getX() - mousePosX;
+					double deltaY = e.getY() - mousePosY;
+					position(new Point2D.Double(position().getX() + deltaX, position().getY() + deltaY));
+					mousePosX = e.getX();
+					mousePosY = e.getY();
+					draw();
+					AwtApp.jc.repaint();
+				}
+			}
+		};
+		AwtApp.jc.addMouseMotionListener(motionAdapter);
+	}
 }

@@ -26,7 +26,8 @@ class GUIHelper {
 }
 
 public class AwtApp extends XShape {
-    class JCanvas extends JPanel {
+    public static JCanvas jc;
+    public class JCanvas extends JPanel {
         XShape _xshape = null;
         public JCanvas(XShape xs) {
             _xshape = xs;
@@ -46,7 +47,7 @@ public class AwtApp extends XShape {
     @Override
     public void run() {
         /* Création de la fenetre */
-        JCanvas jc = new JCanvas(this);
+        jc = new JCanvas(this);
         jc.setBackground(Color.WHITE);
         jc.setPreferredSize(new Dimension(500, 500));
         GUIHelper.showOnFrame(jc, "XShape Swing/AWT Rendering");

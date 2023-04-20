@@ -21,7 +21,7 @@ public abstract class XShape {
         Shape shape3 = _factory.createPolygon(6, 100, 300, 300);
         shape.translate(new Point2D.Double(100, 50));
 
-        Shape[] tmp = { shape, shape2, shape3};
+        Shape[] tmp = {shape,shape2,shape3};
         _shapes = tmp;
         Shape shape4 = _factory.createRectangle(400, 300, 200, 84);
         Shape shape5 = _factory.createRectangle(785, 320, 75, 20);

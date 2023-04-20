@@ -42,13 +42,21 @@ public class AwtToolBar {
         });
         toolBarH.add(btnUndo);
 
-
         JButton btnRedo = new JButton(new ImageIcon("src/main/java/xshape/UI/icons/redo.png"));
         btnRedo.setToolTipText("Redo");
         btnRedo.addActionListener((event) -> {
             Test test = new Test(event, "Redo OK");
         });
         toolBarH.add(btnRedo);
+
+        toolBarH.addSeparator();
+
+        JButton btnTrash = new JButton(new ImageIcon("src/main/java/xshape/UI/icons/trash.png"));
+        btnTrash.setToolTipText("Trash");
+        btnTrash.addActionListener((event) -> {
+            Test test = new Test(event, "Trash OK");
+        });
+        toolBarV.add(btnTrash);
 
         return toolBarH;
     }
@@ -58,13 +66,8 @@ public class AwtToolBar {
         // La barre d'outils à proprement parler
         toolBarV.setOrientation(JToolBar.VERTICAL);
         toolBarV.setPreferredSize(new Dimension(80, toolBarV.getPreferredSize().height));
+        toolBar.setFloatable(false);
 
-        JButton btnTrash = new JButton(new ImageIcon("src/main/java/xshape/UI/icons/trash.png"));
-        btnTrash.setToolTipText("Trash");
-        btnTrash.addActionListener((event) -> {
-            Test test = new Test(event, "Trash OK");
-        });
-        toolBarV.add(btnTrash);
 
         return toolBarV;
     }

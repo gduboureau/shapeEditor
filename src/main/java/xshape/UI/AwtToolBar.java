@@ -56,7 +56,7 @@ public class AwtToolBar {
         btnTrash.addActionListener((event) -> {
             Test test = new Test(event, "Trash OK");
         });
-        toolBarV.add(btnTrash);
+        toolBarH.add(btnTrash);
 
         return toolBarH;
     }
@@ -66,7 +66,7 @@ public class AwtToolBar {
         // La barre d'outils à proprement parler
         toolBarV.setOrientation(JToolBar.VERTICAL);
         toolBarV.setPreferredSize(new Dimension(80, toolBarV.getPreferredSize().height));
-        toolBar.setFloatable(false);
+        toolBarV.setFloatable(false);
 
 
         return toolBarV;

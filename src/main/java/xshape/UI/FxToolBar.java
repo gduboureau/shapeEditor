@@ -21,7 +21,9 @@ public class FxToolBar {
         Separator separator = new Separator(Orientation.VERTICAL);
         Button btnUndo= new Button("Undo");
         Button btnRedo = new Button("Redo");
-        horizontalToolBar.getItems().addAll(btnLoad, btnSave, separator, btnUndo, btnRedo);
+        Separator separator2 = new Separator(Orientation.VERTICAL);
+        Button btnTrash= new Button("Trash");
+        horizontalToolBar.getItems().addAll(btnLoad, btnSave, separator, btnUndo, btnRedo, separator2, btnTrash);
 
         horizontalToolBar.prefHeightProperty().bind(btnLoad.heightProperty().add(20));
         horizontalToolBar.setPrefWidth(5000);
@@ -29,9 +31,6 @@ public class FxToolBar {
     }
 
     public ToolBar initializeVerticalToolBar(){
-        Button btnTrash= new Button("Trash");
-        verticalToolBar.getItems().add(btnTrash);
-
         verticalToolBar.setLayoutY(40);
         verticalToolBar.setPrefWidth(80);
         verticalToolBar.setPrefHeight(5000);

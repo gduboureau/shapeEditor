@@ -1,6 +1,8 @@
 package xshape.UI;
 
 import java.awt.geom.Point2D;
+import java.util.ArrayList;
+import java.util.List;
 
 import xshape.shape.Group;
 import xshape.shape.Shape;
@@ -9,7 +11,7 @@ import xshape.shapeFactory.ShapeFactory;
 public abstract class XShape {
     private ShapeFactory _factory = null;
     Shape[] _shapes = null;
-    Group shapeGroup = new Group();
+    Group group = null;
     //method factory to delegate instanciation of Shapefactory to subclass
     protected abstract ShapeFactory createFactory();
     //Handler to start the GUI
@@ -26,9 +28,11 @@ public abstract class XShape {
         Shape shape4 = _factory.createRectangle(400, 300, 200, 84);
         Shape shape5 = _factory.createRectangle(785, 320, 75, 20);
         Shape shape6 = _factory.createPolygon(6, 100, 500, 200);
+        List<Shape> shapeGroup = new ArrayList<>();
         shapeGroup.add(shape4);
         shapeGroup.add(shape5);
         shapeGroup.add(shape6);
+        group = _factory.createGroup(shapeGroup);
     }
 
     public void draw() {
@@ -42,8 +46,8 @@ public abstract class XShape {
             s.draw();
         }
         
-        shapeGroup.draw();
-        shapeGroup.addMouseEvents();
+        group.draw();
+        group.addMouseEvents();
     }
 
 }

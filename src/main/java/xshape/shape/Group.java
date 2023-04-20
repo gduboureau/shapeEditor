@@ -3,11 +3,14 @@ package xshape.shape;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
+
+
 import java.util.Iterator;
 
-public class Group implements Shape{
+public abstract class Group implements Shape{
 
     private List<Shape> shapeChildren;
+
 
     public Group(){
         shapeChildren = new ArrayList<Shape>();
@@ -79,7 +82,9 @@ public class Group implements Shape{
         Iterator<Shape> iterator = getChild();
         while (iterator.hasNext()){
             Shape child = iterator.next();
-            child.position(position);
+            double newPosX = child.position().getX() + position.getX();
+            double newPosY = child.position().getY() + position.getY();
+            child.position(new Point2D.Double(newPosX, newPosY));
         }
         return this;
     }
@@ -94,12 +99,5 @@ public class Group implements Shape{
         return this;
     }
 
-    @Override
-    public void addMouseEvents() {
-        Iterator<Shape> iterator = getChild();
-        while (iterator.hasNext()){
-            iterator.next().addMouseEvents();
-        }
-    }
     
 }

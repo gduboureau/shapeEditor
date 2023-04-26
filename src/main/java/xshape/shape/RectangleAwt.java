@@ -4,7 +4,9 @@ import java.awt.geom.Point2D;
 
 import xshape.UI.awt.AwtApp;
 import xshape.UI.awt.AwtContext;
+import xshape.command.ICommand;
 import xshape.command.Invoker;
+import xshape.command.UpdateShapePos;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -15,6 +17,7 @@ public class RectangleAwt extends Rectangle {
 	
     private double mousePosX;
     private double mousePosY;
+	private final Point2D oldPos = new Point2D.Double();
 	
 	public RectangleAwt(double posX, double posY, double height, double width) {
 		super.position(new Point2D.Double(posX, posY));
@@ -42,7 +45,8 @@ public class RectangleAwt extends Rectangle {
 
 			public void mousePressed(MouseEvent e) {
 				mousePosX = e.getX();
-				mousePosY = e.getY();	
+				mousePosY = e.getY();
+				oldPos.setLocation(position());	
 			}
 
 		};
@@ -57,7 +61,9 @@ public class RectangleAwt extends Rectangle {
 				if (mousePosXcheck >= position().getX() && mousePosXcheck <= xmax && mousePosYcheck >= position().getY() && mousePosYcheck <= ymax){
 					double deltaX = e.getX() - mousePosX;
 					double deltaY = e.getY() - mousePosY;
-					position(new Point2D.Double(position().getX() + deltaX, position().getY() + deltaY));
+					Point2D newPos = new Point2D.Double(position().getX() + deltaX, position().getY() + deltaY);
+					ICommand updateShapePos = new UpdateShapePos(RectangleAwt.this, newPos, oldPos);
+					invoker.apply(updateShapePos);
 					mousePosX = e.getX();
 					mousePosY = e.getY();
 					draw();

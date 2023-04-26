@@ -8,9 +8,9 @@ public class UpdateShapePos implements ICommand {
     private final Shape shape;
     private final Point2D oldPos, newPos;
 
-    public UpdateShapePos(Shape shape, Point2D newPos) {
+    public UpdateShapePos(Shape shape, Point2D newPos, Point2D oldPos) {
         this.shape = shape;
-        this.oldPos = shape.position();
+        this.oldPos = oldPos;
         this.newPos = newPos;
     }
 

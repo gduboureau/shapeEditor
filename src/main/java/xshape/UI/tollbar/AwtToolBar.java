@@ -5,6 +5,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JToolBar;
 
+import xshape.UI.awt.AwtApp;
 import xshape.command.Invoker;
 import xshape.command.Test;
 
@@ -43,6 +44,7 @@ public class AwtToolBar implements IToolbar{
         btnUndo.setToolTipText("Undo");
         btnUndo.addActionListener(event -> {
             invoker.undo();
+            AwtApp.getCanvas().repaint();
         });
         horizontalToolBar.add(btnUndo);
 
@@ -50,6 +52,7 @@ public class AwtToolBar implements IToolbar{
         btnRedo.setToolTipText("Redo");
         btnRedo.addActionListener(event -> {
             invoker.redo();
+            AwtApp.getCanvas().repaint();
         });
         horizontalToolBar.add(btnRedo);
 

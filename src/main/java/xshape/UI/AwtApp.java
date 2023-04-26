@@ -10,6 +10,8 @@ import java.awt.event.WindowEvent;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
+import xshape.UI.tollbar.AwtToolBar;
+import xshape.UI.tollbar.IToolbar;
 import xshape.shapeFactory.ShapeFactory;
 import xshape.shapeFactory.ShapeFactoryAwt;
 
@@ -67,11 +69,19 @@ public class AwtApp extends XShape {
         jc.setPreferredSize(new Dimension(500, 500));
         GUIHelper.showOnFrame(jc, "XShape Swing/AWT Rendering");
 
-        /* Creation des toolBar Horizontal et Vertical */
-        AwtToolBar toolBar = new AwtToolBar();
+        // /* Creation des toolBar Horizontal et Vertical */
+        // AwtToolBar toolBar = new AwtToolBar();
+        // jc.setLayout(new BorderLayout());
+        // jc.add(toolBar.createToolBarH(), BorderLayout.NORTH);
+        // jc.add(toolBar.createToolBarV(), BorderLayout.WEST);
+    }
+
+    @Override
+    protected void createToolBar() {
         jc.setLayout(new BorderLayout());
-        jc.add(toolBar.createToolBarH(), BorderLayout.NORTH);
-        jc.add(toolBar.createToolBarV(), BorderLayout.WEST);
+        toolbar = new AwtToolBar(invoker);
+        jc.add(((AwtToolBar) toolbar).getVerticalToolBar(), BorderLayout.NORTH);
+        jc.add(((AwtToolBar) toolbar).getHorizontalToolBar(), BorderLayout.WEST);
     }
 }
 

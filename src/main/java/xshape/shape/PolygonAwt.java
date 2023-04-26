@@ -9,6 +9,7 @@ import java.awt.geom.Point2D;
 
 import xshape.UI.AwtApp;
 import xshape.UI.AwtContext;
+import xshape.command.Invoker;
 
 public class PolygonAwt extends Polygon {
 
@@ -40,7 +41,7 @@ public class PolygonAwt extends Polygon {
     }
 
 	@Override
-	public void addMouseEvents() {
+	public void addMouseEvents(Invoker invoker) {
 		MouseAdapter mouseAdapter = new MouseAdapter() {
 
 			public void mousePressed(MouseEvent e) {

@@ -4,6 +4,9 @@ import java.awt.geom.Point2D;
 import javafx.scene.Group;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import xshape.command.ICommand;
+import xshape.command.Invoker;
+import xshape.command.UpdateShapePos;
 
 public class RectangleFx extends Rectangle {
 
@@ -31,7 +34,7 @@ public class RectangleFx extends Rectangle {
 	}
 
 	@Override
-	public void addMouseEvents() {
+	public void addMouseEvents(Invoker invoker) {
 		_adapted.setOnMousePressed((MouseEvent event) -> {
 			mousePosX = event.getSceneX();
 			mousePosY = event.getSceneY();
@@ -40,7 +43,10 @@ public class RectangleFx extends Rectangle {
 		_adapted.setOnMouseDragged((MouseEvent event) -> {
 			double deltaX = event.getSceneX() - mousePosX;
 			double deltaY = event.getSceneY() - mousePosY;
-			position(new Point2D.Double(position().getX() + deltaX, position().getY() + deltaY));
+			Point2D newPos = new Point2D.Double(position().getX() + deltaX, position().getY() + deltaY);
+			ICommand updateShapePos = new UpdateShapePos(this, newPos);
+			invoker.apply(updateShapePos);
+			// position(new Point2D.Double(position().getX() + deltaX, position().getY() + deltaY));
 			mousePosX = event.getSceneX();
 			mousePosY = event.getSceneY();
 			draw();

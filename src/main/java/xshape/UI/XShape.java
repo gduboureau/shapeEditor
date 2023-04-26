@@ -4,6 +4,8 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 
+import xshape.UI.tollbar.IToolbar;
+import xshape.command.Invoker;
 import xshape.shape.Group;
 import xshape.shape.Shape;
 import xshape.shapeFactory.ShapeFactory;
@@ -12,12 +14,19 @@ public abstract class XShape {
     private ShapeFactory _factory = null;
     Shape[] _shapes = null;
     Group group = null;
+    protected Invoker invoker = new Invoker();
+    protected IToolbar toolbar;
+    protected abstract void createToolBar(); 
     //method factory to delegate instanciation of Shapefactory to subclass
     protected abstract ShapeFactory createFactory();
     //Handler to start the GUI
     public abstract void run();
 
     private void createScene() {
+
+        toolbar.createToolBarH();
+        toolbar.createToolBarV();
+
         Shape shape = _factory.createRectangle(100, 100, 50, 50);
         Shape shape2 = _factory.createRectangle(250, 250, 75, 20);
         Shape shape3 = _factory.createPolygon(6, 100, 300, 300);
@@ -42,12 +51,12 @@ public abstract class XShape {
         }
 
         for (Shape s : _shapes){
-            s.addMouseEvents();
+            s.addMouseEvents(invoker);
             s.draw();
         }
         
         group.draw();
-        group.addMouseEvents();
+        group.addMouseEvents(invoker);
     }
 
 }

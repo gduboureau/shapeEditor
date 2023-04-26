@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import javafx.scene.input.MouseEvent;
+import xshape.command.Invoker;
 
 public class GroupFx extends Group{
 
@@ -18,7 +19,7 @@ public class GroupFx extends Group{
     }
 
     @Override
-    public void addMouseEvents() {
+    public void addMouseEvents(Invoker invoker) {
         Iterator<Shape> iterator = getChild();
         while (iterator.hasNext()){
             Shape shape = iterator.next();

@@ -7,6 +7,7 @@ import java.awt.geom.Point2D;
 import java.util.List;
 
 import xshape.UI.AwtApp;
+import xshape.command.Invoker;
 
 public class GroupAwt extends Group{
 
@@ -22,7 +23,7 @@ public class GroupAwt extends Group{
     }
 
     @Override
-	public void addMouseEvents() {
+	public void addMouseEvents(Invoker invoker) {
 		MouseAdapter mouseAdapter = new MouseAdapter() {
 
 			public void mousePressed(MouseEvent e) {

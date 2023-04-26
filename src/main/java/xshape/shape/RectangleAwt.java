@@ -4,6 +4,7 @@ import java.awt.geom.Point2D;
 
 import xshape.UI.AwtApp;
 import xshape.UI.AwtContext;
+import xshape.command.Invoker;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -36,7 +37,7 @@ public class RectangleAwt extends Rectangle {
 
 
 	@Override
-	public void addMouseEvents() {
+	public void addMouseEvents(Invoker invoker) {
 		MouseAdapter mouseAdapter = new MouseAdapter() {
 
 			public void mousePressed(MouseEvent e) {

@@ -3,6 +3,7 @@ package xshape.shape;
 import javafx.scene.Group;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import xshape.command.Invoker;
 
 import java.awt.geom.Point2D;
 
@@ -39,7 +40,7 @@ public class PolygonFx extends Polygon{
     }
 
     @Override
-    public void addMouseEvents() {
+    public void addMouseEvents(Invoker invoker) {
         _adapted.setOnMousePressed((MouseEvent event) -> {
 			mousePosX = event.getSceneX();
 			mousePosY = event.getSceneY();

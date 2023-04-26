@@ -1,4 +1,4 @@
-package xshape.UI.tollbar;
+package xshape.UI.toolbar;
 
 public interface IToolbar {
 

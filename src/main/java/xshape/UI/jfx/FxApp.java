@@ -3,7 +3,7 @@ package xshape.UI.jfx;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.layout.BorderPane;
 import xshape.UI.XShape;
-import xshape.UI.tollbar.FxToolBar;
+import xshape.UI.toolbar.FxToolBar;
 import xshape.shapeFactory.ShapeFactory;
 import xshape.shapeFactory.ShapeFactoryFx;
 

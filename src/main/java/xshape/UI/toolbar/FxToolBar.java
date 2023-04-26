@@ -1,4 +1,4 @@
-package xshape.UI.tollbar;
+package xshape.UI.toolbar;
 
 import javafx.geometry.Orientation;
 import javafx.scene.control.ToolBar;

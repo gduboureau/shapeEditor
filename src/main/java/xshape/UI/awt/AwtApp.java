@@ -11,7 +11,7 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 
 import xshape.UI.XShape;
-import xshape.UI.tollbar.AwtToolBar;
+import xshape.UI.toolbar.AwtToolBar;
 import xshape.shapeFactory.ShapeFactory;
 import xshape.shapeFactory.ShapeFactoryAwt;
 

@@ -4,7 +4,7 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 
-import xshape.UI.tollbar.IToolbar;
+import xshape.UI.toolbar.IToolbar;
 import xshape.command.Invoker;
 import xshape.shape.Group;
 import xshape.shape.Shape;

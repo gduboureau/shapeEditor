@@ -17,11 +17,13 @@ public class UpdateShapePos implements ICommand {
     @Override
     public void apply() {
         shape.position(newPos);
+        shape.draw();
     }
 
     @Override
     public void undo() {
         shape.position(oldPos);
+        shape.draw();
     }
     
 }

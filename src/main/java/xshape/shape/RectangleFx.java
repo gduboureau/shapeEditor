@@ -14,7 +14,7 @@ public class RectangleFx extends Rectangle {
     Group _grp = null;
     private double mousePosX;
     private double mousePosY;
-	private final Point2D oldPos = new Point2D.Double(); 
+	private Point2D oldPos = new Point2D.Double(); 
 
 	public RectangleFx(double posX, double posY, double height, double width, Group grp) {
 		position(new Point2D.Double(posX, posY));
@@ -45,13 +45,17 @@ public class RectangleFx extends Rectangle {
 		_adapted.setOnMouseDragged((MouseEvent event) -> {
 			double deltaX = event.getSceneX() - mousePosX;
 			double deltaY = event.getSceneY() - mousePosY;
-			Point2D newPos = new Point2D.Double(position().getX() + deltaX, position().getY() + deltaY);
-			ICommand updateShapePos = new UpdateShapePos(RectangleFx.this, newPos, oldPos);
-			invoker.apply(updateShapePos);
-			// position(new Point2D.Double(position().getX() + deltaX, position().getY() + deltaY));
+			position(new Point2D.Double(position().getX() + deltaX, position().getY() + deltaY));
 			mousePosX = event.getSceneX();
 			mousePosY = event.getSceneY();
 			draw();
+		});
+
+		_adapted.setOnMouseReleased((MouseEvent event) -> {
+			Point2D newPos = new Point2D.Double(position().getX(), position().getY());
+			ICommand updateShapePos = new UpdateShapePos(RectangleFx.this, newPos, oldPos);
+			invoker.apply(updateShapePos);
+			oldPos = new Point2D.Double();
 		});
 	}
 }

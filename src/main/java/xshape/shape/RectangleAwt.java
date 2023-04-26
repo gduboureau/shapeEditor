@@ -17,8 +17,9 @@ public class RectangleAwt extends Rectangle {
 	
     private double mousePosX;
     private double mousePosY;
-	private final Point2D oldPos = new Point2D.Double();
-	
+	private Point2D oldPos = new Point2D.Double();
+	private boolean mouseListenersAdded = false;
+
 	public RectangleAwt(double posX, double posY, double height, double width) {
 		super.position(new Point2D.Double(posX, posY));
 		super.size(new Point2D.Double(width, height));
@@ -41,37 +42,59 @@ public class RectangleAwt extends Rectangle {
 
 	@Override
 	public void addMouseEvents(Invoker invoker) {
-		MouseAdapter mouseAdapter = new MouseAdapter() {
+		if (!mouseListenersAdded) {
 
-			public void mousePressed(MouseEvent e) {
-				mousePosX = e.getX();
-				mousePosY = e.getY();
-				oldPos.setLocation(position());	
-			}
+			MouseAdapter mouseAdapter = new MouseAdapter() {
 
-		};
-		AwtApp.addListener(mouseAdapter);
-	
-		MouseMotionAdapter motionAdapter = new MouseMotionAdapter() {
-			public void mouseDragged(MouseEvent e) {
-				double xmax = position().getX() + size().getX();
-				double ymax = position().getY() + size().getY();
-				double mousePosXcheck = mousePosX + size().getX()/2;
-				double mousePosYcheck = mousePosY + size().getY()/2;
-				if (mousePosXcheck >= position().getX() && mousePosXcheck <= xmax && mousePosYcheck >= position().getY() && mousePosYcheck <= ymax){
-					double deltaX = e.getX() - mousePosX;
-					double deltaY = e.getY() - mousePosY;
-					Point2D newPos = new Point2D.Double(position().getX() + deltaX, position().getY() + deltaY);
-					ICommand updateShapePos = new UpdateShapePos(RectangleAwt.this, newPos, oldPos);
-					invoker.apply(updateShapePos);
+				public void mousePressed(MouseEvent e) {
 					mousePosX = e.getX();
 					mousePosY = e.getY();
-					draw();
-					AwtApp.getCanvas().repaint();
+					double xmax = position().getX() + size().getX();
+					double ymax = position().getY() + size().getY();
+					double mousePosXcheck = mousePosX + size().getX()/2;
+					double mousePosYcheck = mousePosY + size().getY()/2;
+					if (mousePosXcheck >= position().getX() && mousePosXcheck <= xmax && mousePosYcheck >= position().getY() && mousePosYcheck <= ymax){
+						oldPos.setLocation(new Point2D.Double(mousePosX, mousePosY));	
+					}
 				}
-			}
-		};
-		AwtApp.addListener(motionAdapter);
+
+				public void mouseReleased(MouseEvent e){
+					double xmax = position().getX() + size().getX();
+					double ymax = position().getY() + size().getY();
+					double mousePosXcheck = mousePosX + size().getX()/2;
+					double mousePosYcheck = mousePosY + size().getY()/2;
+					if (mousePosXcheck >= position().getX() && mousePosXcheck <= xmax && mousePosYcheck >= position().getY() && mousePosYcheck <= ymax){
+						Point2D newPos = new Point2D.Double(position().getX(), position().getY());
+						ICommand updateShapePos = new UpdateShapePos(RectangleAwt.this, newPos, oldPos);
+						invoker.apply(updateShapePos);
+						oldPos = new Point2D.Double();	
+					}
+				}
+
+
+			};
+			AwtApp.addListener(mouseAdapter);
+	
+			MouseMotionAdapter motionAdapter = new MouseMotionAdapter() {
+				public void mouseDragged(MouseEvent e) {
+					double xmax = position().getX() + size().getX();
+					double ymax = position().getY() + size().getY();
+					double mousePosXcheck = mousePosX + size().getX()/2;
+					double mousePosYcheck = mousePosY + size().getY()/2;
+					if (mousePosXcheck >= position().getX() && mousePosXcheck <= xmax && mousePosYcheck >= position().getY() && mousePosYcheck <= ymax){
+						double deltaX = e.getX() - mousePosX;
+						double deltaY = e.getY() - mousePosY;
+						position(new Point2D.Double(position().getX() + deltaX, position().getY() + deltaY));
+						mousePosX = e.getX();
+						mousePosY = e.getY();
+						draw();
+						AwtApp.getCanvas().repaint();
+					}
+				}
+			};
+			AwtApp.addListener(motionAdapter);
+			mouseListenersAdded = true;
+		}
 	}
 	
 

@@ -6,7 +6,7 @@ import java.awt.event.MouseMotionAdapter;
 import java.awt.geom.Point2D;
 import java.util.List;
 
-import xshape.UI.AwtApp;
+import xshape.UI.awt.AwtApp;
 import xshape.command.Invoker;
 
 public class GroupAwt extends Group{

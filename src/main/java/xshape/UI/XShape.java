@@ -24,9 +24,6 @@ public abstract class XShape {
 
     private void createScene() {
 
-        toolbar.createToolBarH();
-        toolbar.createToolBarV();
-
         Shape shape = _factory.createRectangle(100, 100, 50, 50);
         Shape shape2 = _factory.createRectangle(250, 250, 75, 20);
         Shape shape3 = _factory.createPolygon(6, 100, 300, 300);

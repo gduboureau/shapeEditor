@@ -68,7 +68,7 @@ public class AwtToolBar implements IToolbar{
     
         // La barre d'outils à proprement parler
         verticalToolBar.setOrientation(JToolBar.VERTICAL);
-        verticalToolBar.setPreferredSize(new Dimension(80, verticalToolBar.getPreferredSize().height));
+        verticalToolBar.setPreferredSize(new Dimension(100, verticalToolBar.getPreferredSize().height));
         verticalToolBar.setFloatable(false);
 
     }

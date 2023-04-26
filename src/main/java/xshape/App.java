@@ -1,8 +1,8 @@
 package xshape;
 
-import xshape.UI.AwtApp;
-import xshape.UI.FxApp;
 import xshape.UI.XShape;
+import xshape.UI.awt.AwtApp;
+import xshape.UI.jfx.FxApp;
 
 public class App {
 

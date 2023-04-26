@@ -2,8 +2,8 @@ package xshape.shape;
 
 import java.awt.geom.Point2D;
 
-import xshape.UI.AwtApp;
-import xshape.UI.AwtContext;
+import xshape.UI.awt.AwtApp;
+import xshape.UI.awt.AwtContext;
 import xshape.command.Invoker;
 
 import java.awt.*;

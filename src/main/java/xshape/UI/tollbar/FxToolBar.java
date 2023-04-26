@@ -42,7 +42,7 @@ public class FxToolBar implements IToolbar{
 
     public void createToolBarV(){
         verticalToolBar.setLayoutY(40);
-        verticalToolBar.setPrefWidth(80);
+        verticalToolBar.setPrefWidth(100);
         verticalToolBar.setPrefHeight(5000);
         verticalToolBar.setStyle("-fx-background-color: #ECECEC;");
         verticalToolBar.setOrientation(Orientation.VERTICAL);

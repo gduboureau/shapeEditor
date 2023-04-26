@@ -9,7 +9,7 @@ import java.util.Iterator;
 
 public abstract class Group implements Shape{
 
-    private List<Shape> shapeChildren;
+    List<Shape> shapeChildren;
 
 
     public Group(){

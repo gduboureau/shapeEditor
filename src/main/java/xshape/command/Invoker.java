@@ -19,7 +19,6 @@ public class Invoker {
 
     public void undo() {
         if (!undoStack.isEmpty()) {
-            System.out.println(undoStack.size());
             ICommand command = undoStack.pop();
             command.undo();
             redoStack.push(command);

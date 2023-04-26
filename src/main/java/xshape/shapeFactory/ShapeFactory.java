@@ -14,7 +14,7 @@ public interface ShapeFactory {
 
     Polygon createPolygon(int numSides, double sideLength, double posX, double posY);
 
-    Group createGroup(List<Shape> shapes);
+    Group createGroup();
     
 }
 

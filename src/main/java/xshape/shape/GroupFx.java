@@ -2,7 +2,6 @@ package xshape.shape;
 
 import java.awt.geom.Point2D;
 import java.util.Iterator;
-import java.util.List;
 
 import javafx.scene.input.MouseEvent;
 import xshape.command.Invoker;
@@ -12,10 +11,7 @@ public class GroupFx extends Group{
     private double mousePosX;
     private double mousePosY;
 
-    public GroupFx(List<Shape> shapes){
-        for (Shape s : shapes){
-            add(s);
-        }
+    public GroupFx(){
     }
 
     @Override
@@ -37,7 +33,7 @@ public class GroupFx extends Group{
                     mousePosY = event.getSceneY();
                     draw();
                 });
-            }else{
+            }else if (shape instanceof RectangleFx){
                 ((RectangleFx) shape)._adapted.setOnMousePressed((MouseEvent event) -> {
                     mousePosX = event.getSceneX();
                     mousePosY = event.getSceneY();
@@ -52,7 +48,6 @@ public class GroupFx extends Group{
                     draw();
                 });
             }
-            
         }
     }
     

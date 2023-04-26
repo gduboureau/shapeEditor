@@ -24,7 +24,7 @@ public class ShapeFactoryAwt implements ShapeFactory {
         return new PolygonAwt(numSides, sideLength, posX, posY);
     }
     @Override
-    public Group createGroup(List<Shape> shapes) {
-        return new GroupAwt(shapes);
+    public Group createGroup() {
+        return new GroupAwt();
     }
 }

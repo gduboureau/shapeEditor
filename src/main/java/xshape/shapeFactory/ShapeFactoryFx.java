@@ -28,7 +28,7 @@ public class ShapeFactoryFx implements ShapeFactory {
     }
 
     @Override
-    public xshape.shape.Group createGroup(List<Shape> shapes) {
-        return new GroupFx(shapes);
+    public xshape.shape.Group createGroup() {
+        return new GroupFx();
     } 
 }

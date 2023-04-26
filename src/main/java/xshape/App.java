@@ -11,7 +11,6 @@ public class App {
         appAwt.run();
         XShape appFx = new FxApp();
         appFx.run();
-
     }
 
 }

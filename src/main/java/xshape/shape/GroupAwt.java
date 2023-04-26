@@ -4,6 +4,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.geom.Point2D;
+import java.util.ArrayList;
 import java.util.List;
 
 import xshape.UI.awt.AwtApp;
@@ -13,19 +14,15 @@ public class GroupAwt extends Group{
 
     private double mousePosX;
     private double mousePosY;
-    private List<Shape> shapes;
+	List<Shape> shapes = new ArrayList<>();
 
-    public GroupAwt(List<Shape> shapes){
-        this.shapes = shapes;
-        for (Shape s : shapes){
-            add(s);
-        }
-    }
+    public GroupAwt(){
+		shapes = shapeChildren;
+	}
 
     @Override
 	public void addMouseEvents(Invoker invoker) {
 		MouseAdapter mouseAdapter = new MouseAdapter() {
-
 			public void mousePressed(MouseEvent e) {
 				mousePosX = e.getX();
 				mousePosY = e.getY();	
@@ -41,7 +38,7 @@ public class GroupAwt extends Group{
 				double mousePosXcheck = mousePosX + size().getX()/2;
 				double mousePosYcheck = mousePosY + size().getY()/2;
                 Boolean isInGroup = false;
-                for (Shape s : shapes){
+                for (Shape s : shapeChildren){
                     double xMax = s.position().getX() + s.size().getX();
 				    double yMax = s.position().getY() + s.size().getY();
                     double mousePosXcheckIsIn = mousePosX + s.size().getX()/2;

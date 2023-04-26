@@ -3,7 +3,11 @@ package xshape.shape;
 import javafx.scene.Group;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import xshape.UI.XShape;
+import xshape.command.GroupCommand;
+import xshape.command.ICommand;
 import xshape.command.Invoker;
+import xshape.command.UpdateShapePos;
 
 import java.awt.geom.Point2D;
 
@@ -13,6 +17,7 @@ public class PolygonFx extends Polygon{
     Group _grp = null;
     private double mousePosX;
     private double mousePosY;
+	private Point2D oldPos = new Point2D.Double(); 
 
     public PolygonFx(int numSides, double sideLength, double posX, double posY, Group grp) {
         super.numSides(numSides).sideLength(sideLength).position(new Point2D.Double(posX, posY));
@@ -40,10 +45,18 @@ public class PolygonFx extends Polygon{
     }
 
     @Override
-    public void addMouseEvents(Invoker invoker) {
-        _adapted.setOnMousePressed((MouseEvent event) -> {
+	public void addMouseEvents(Invoker invoker) {
+		_adapted.setOnMousePressed((MouseEvent event) -> {
 			mousePosX = event.getSceneX();
 			mousePosY = event.getSceneY();
+			oldPos.setLocation(position());
+			if (event.isControlDown() && event.isPrimaryButtonDown()){
+				ICommand groupCommand = new GroupCommand(PolygonFx.this);
+				invoker.apply(groupCommand);
+			}
+			if (event.isControlDown() && event.isSecondaryButtonDown()){
+				XShape.group.remove(this);
+			}
 		});
 	
 		_adapted.setOnMouseDragged((MouseEvent event) -> {
@@ -54,6 +67,13 @@ public class PolygonFx extends Polygon{
 			mousePosY = event.getSceneY();
 			draw();
 		});
-    }
+
+		_adapted.setOnMouseReleased((MouseEvent event) -> {
+			Point2D newPos = new Point2D.Double(position().getX(), position().getY());
+			ICommand updateShapePos = new UpdateShapePos(PolygonFx.this, newPos, oldPos);
+			invoker.apply(updateShapePos);
+			oldPos = new Point2D.Double();
+		});
+	}
     
 }

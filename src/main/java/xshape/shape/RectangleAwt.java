@@ -2,8 +2,10 @@ package xshape.shape;
 
 import java.awt.geom.Point2D;
 
+import xshape.UI.XShape;
 import xshape.UI.awt.AwtApp;
 import xshape.UI.awt.AwtContext;
+import xshape.command.GroupCommand;
 import xshape.command.ICommand;
 import xshape.command.Invoker;
 import xshape.command.UpdateShapePos;
@@ -55,6 +57,13 @@ public class RectangleAwt extends Rectangle {
 					double mousePosYcheck = mousePosY + size().getY()/2;
 					if (mousePosXcheck >= position().getX() && mousePosXcheck <= xmax && mousePosYcheck >= position().getY() && mousePosYcheck <= ymax){
 						oldPos.setLocation(new Point2D.Double(mousePosX, mousePosY));	
+					}
+					if (e.isControlDown() && e.getButton() == 1){
+						ICommand groupCommand = new GroupCommand(RectangleAwt.this);
+						invoker.apply(groupCommand);
+					}
+					if (e.isControlDown() && e.getButton() == 3){
+						XShape.group.remove(RectangleAwt.this);
 					}
 				}
 

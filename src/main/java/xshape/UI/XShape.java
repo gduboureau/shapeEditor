@@ -1,8 +1,6 @@
 package xshape.UI;
 
 import java.awt.geom.Point2D;
-import java.util.ArrayList;
-import java.util.List;
 
 import xshape.UI.toolbar.IToolbar;
 import xshape.command.Invoker;
@@ -13,7 +11,7 @@ import xshape.shapeFactory.ShapeFactory;
 public abstract class XShape {
     private ShapeFactory _factory = null;
     Shape[] _shapes = null;
-    Group group = null;
+    public static Group group;
     protected Invoker invoker = new Invoker();
     protected IToolbar toolbar;
     protected abstract void createToolBar(); 
@@ -33,12 +31,9 @@ public abstract class XShape {
         _shapes = tmp;
         Shape shape4 = _factory.createRectangle(400, 300, 200, 84);
         Shape shape5 = _factory.createRectangle(785, 320, 75, 20);
-        Shape shape6 = _factory.createPolygon(6, 100, 500, 200);
-        List<Shape> shapeGroup = new ArrayList<>();
-        shapeGroup.add(shape4);
-        shapeGroup.add(shape5);
-        shapeGroup.add(shape6);
-        group = _factory.createGroup(shapeGroup);
+        group = _factory.createGroup();
+        group.add(shape4);
+        group.add(shape5);
     }
 
     public void draw() {

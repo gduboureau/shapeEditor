@@ -4,6 +4,8 @@ import java.awt.geom.Point2D;
 import javafx.scene.Group;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import xshape.UI.XShape;
+import xshape.command.GroupCommand;
 import xshape.command.ICommand;
 import xshape.command.Invoker;
 import xshape.command.UpdateShapePos;
@@ -40,6 +42,13 @@ public class RectangleFx extends Rectangle {
 			mousePosX = event.getSceneX();
 			mousePosY = event.getSceneY();
 			oldPos.setLocation(position());
+			if (event.isControlDown() && event.isPrimaryButtonDown()){
+				ICommand groupCommand = new GroupCommand(RectangleFx.this);
+				invoker.apply(groupCommand);
+			}
+			if (event.isControlDown() && event.isSecondaryButtonDown()){
+				XShape.group.remove(this);
+			}
 		});
 	
 		_adapted.setOnMouseDragged((MouseEvent event) -> {

@@ -6,7 +6,7 @@ import xshape.command.Invoker;
 
 public interface Shape{
 	void draw();
-	void addMouseEvents(Invoker invoker);
+	void addMouseEvents(Invoker invoker, Group g);
 	Point2D size();
 	Shape size(Point2D vec);
 	Point2D position();

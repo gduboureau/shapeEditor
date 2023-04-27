@@ -15,7 +15,7 @@ public class GroupFx extends Group{
     }
 
     @Override
-    public void addMouseEvents(Invoker invoker) {
+    public void addMouseEvents(Invoker invoker, xshape.shape.Group g) {
         Iterator<Shape> iterator = getChild();
         while (iterator.hasNext()){
             Shape shape = iterator.next();

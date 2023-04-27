@@ -21,7 +21,7 @@ public class GroupAwt extends Group{
 	}
 
     @Override
-	public void addMouseEvents(Invoker invoker) {
+	public void addMouseEvents(Invoker invoker, xshape.shape.Group g) {
 		MouseAdapter mouseAdapter = new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
 				mousePosX = e.getX();
@@ -38,7 +38,7 @@ public class GroupAwt extends Group{
 				double mousePosXcheck = mousePosX + size().getX()/2;
 				double mousePosYcheck = mousePosY + size().getY()/2;
                 Boolean isInGroup = false;
-                for (Shape s : shapeChildren){
+                for (Shape s : shapes){
                     double xMax = s.position().getX() + s.size().getX();
 				    double yMax = s.position().getY() + s.size().getY();
                     double mousePosXcheckIsIn = mousePosX + s.size().getX()/2;

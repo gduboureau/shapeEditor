@@ -43,7 +43,7 @@ public class RectangleAwt extends Rectangle {
 
 
 	@Override
-	public void addMouseEvents(Invoker invoker) {
+	public void addMouseEvents(Invoker invoker, Group g) {
 		if (!mouseListenersAdded) {
 
 			MouseAdapter mouseAdapter = new MouseAdapter() {
@@ -57,13 +57,13 @@ public class RectangleAwt extends Rectangle {
 					double mousePosYcheck = mousePosY + size().getY()/2;
 					if (mousePosXcheck >= position().getX() && mousePosXcheck <= xmax && mousePosYcheck >= position().getY() && mousePosYcheck <= ymax){
 						oldPos.setLocation(new Point2D.Double(mousePosX, mousePosY));	
-					}
-					if (e.isControlDown() && e.getButton() == 1){
-						ICommand groupCommand = new GroupCommand(RectangleAwt.this);
-						invoker.apply(groupCommand);
-					}
-					if (e.isControlDown() && e.getButton() == 3){
-						XShape.group.remove(RectangleAwt.this);
+						if (e.isControlDown() && e.getButton() == 1){
+							ICommand groupCommand = new GroupCommand(RectangleAwt.this, g);
+							invoker.apply(groupCommand);
+						}
+						if (e.isControlDown() && e.getButton() == 3){
+							g.remove(RectangleAwt.this);
+						}
 					}
 				}
 

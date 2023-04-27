@@ -47,7 +47,7 @@ public class PolygonAwt extends Polygon {
     }
 
 	@Override
-	public void addMouseEvents(Invoker invoker) {
+	public void addMouseEvents(Invoker invoker, Group g) {
 		if (!mouseListenersAdded) {
 
 			MouseAdapter mouseAdapter = new MouseAdapter() {
@@ -61,13 +61,13 @@ public class PolygonAwt extends Polygon {
 					double mousePosYcheck = mousePosY + size().getY()/2;
 					if (mousePosXcheck >= position().getX() && mousePosXcheck <= xmax && mousePosYcheck >= position().getY() && mousePosYcheck <= ymax){
 						oldPos.setLocation(new Point2D.Double(mousePosX, mousePosY));	
-					}
-					if (e.isControlDown() && e.getButton() == 1){
-						ICommand groupCommand = new GroupCommand(PolygonAwt.this);
-						invoker.apply(groupCommand);
-					}
-					if (e.isControlDown() && e.getButton() == 3){
-						XShape.group.remove(PolygonAwt.this);
+						if (e.isControlDown() && e.getButton() == 1){
+							ICommand groupCommand = new GroupCommand(PolygonAwt.this,g);
+							invoker.apply(groupCommand);
+						}
+						if (e.isControlDown() && e.getButton() == 3){
+							g.remove(PolygonAwt.this);
+						}
 					}
 				}
 

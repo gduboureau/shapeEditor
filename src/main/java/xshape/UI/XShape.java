@@ -11,7 +11,7 @@ import xshape.shapeFactory.ShapeFactory;
 public abstract class XShape {
     private ShapeFactory _factory = null;
     Shape[] _shapes = null;
-    public static Group group;
+    Group group;
     protected Invoker invoker = new Invoker();
     protected IToolbar toolbar;
     protected abstract void createToolBar(); 
@@ -48,12 +48,12 @@ public abstract class XShape {
         }
 
         for (Shape s : _shapes){
-            s.addMouseEvents(invoker);
+            s.addMouseEvents(invoker, group);
             s.draw();
         }
         
         group.draw();
-        group.addMouseEvents(invoker);
+        group.addMouseEvents(invoker, group);
     }
 
 }

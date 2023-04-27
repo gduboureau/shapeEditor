@@ -1,24 +1,26 @@
 package xshape.command;
 
 import xshape.UI.jfx.FxApp;
+import xshape.shape.Group;
 import xshape.shape.Shape;
 
 public class GroupCommand implements ICommand{
     private final Shape shape;
+    Group group;
 
-
-    public GroupCommand(Shape shape){
+    public GroupCommand(Shape shape, Group g){
         this.shape = shape;
+        this.group = g;
     }
 
     @Override
     public void apply() {
-       FxApp.group.add(shape);
+        group.add(shape);
     }
 
     @Override
     public void undo() {
-        FxApp.group.remove(shape);
+        group.remove(shape);
     }
     
 }

@@ -37,17 +37,17 @@ public class RectangleFx extends Rectangle {
 	}
 
 	@Override
-	public void addMouseEvents(Invoker invoker) {
+	public void addMouseEvents(Invoker invoker, xshape.shape.Group g) {
 		_adapted.setOnMousePressed((MouseEvent event) -> {
 			mousePosX = event.getSceneX();
 			mousePosY = event.getSceneY();
 			oldPos.setLocation(position());
 			if (event.isControlDown() && event.isPrimaryButtonDown()){
-				ICommand groupCommand = new GroupCommand(RectangleFx.this);
+				ICommand groupCommand = new GroupCommand(RectangleFx.this,g);
 				invoker.apply(groupCommand);
 			}
 			if (event.isControlDown() && event.isSecondaryButtonDown()){
-				XShape.group.remove(this);
+				g.remove(this);
 			}
 		});
 	

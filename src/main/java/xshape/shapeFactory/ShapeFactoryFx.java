@@ -4,12 +4,10 @@ import xshape.shape.GroupFx;
 import xshape.shape.Polygon;
 import xshape.shape.PolygonFx;
 
-import java.util.List;
 
 import javafx.scene.Group;
 import xshape.shape.Rectangle;
 import xshape.shape.RectangleFx;
-import xshape.shape.Shape;
 
 public class ShapeFactoryFx implements ShapeFactory {
     Group grp;

@@ -1,6 +1,5 @@
 package xshape.command;
 
-import xshape.UI.jfx.FxApp;
 import xshape.shape.Group;
 import xshape.shape.Shape;
 

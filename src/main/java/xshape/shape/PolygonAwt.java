@@ -7,7 +7,6 @@ import java.awt.event.MouseMotionAdapter;
 import java.awt.Color;
 import java.awt.geom.Point2D;
 
-import xshape.UI.XShape;
 import xshape.UI.awt.AwtApp;
 import xshape.UI.awt.AwtContext;
 import xshape.command.GroupCommand;

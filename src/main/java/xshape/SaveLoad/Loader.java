@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
 
-import xshape.UI.XShape;
 import xshape.shape.Shape;
 
 public class Loader {

@@ -1,9 +1,7 @@
 package xshape.shape;
 
 import java.awt.geom.Point2D;
-import java.io.Serializable;
 
-import xshape.UI.XShape;
 import xshape.UI.awt.AwtApp;
 import xshape.UI.awt.AwtContext;
 import xshape.command.GroupCommand;

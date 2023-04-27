@@ -1,6 +1,5 @@
 package xshape.shapeFactory;
 
-import java.util.List;
 
 import xshape.shape.Group;
 import xshape.shape.GroupAwt;
@@ -8,7 +7,6 @@ import xshape.shape.Polygon;
 import xshape.shape.PolygonAwt;
 import xshape.shape.Rectangle;
 import xshape.shape.RectangleAwt;
-import xshape.shape.Shape;
 
 public class ShapeFactoryAwt implements ShapeFactory {
     public ShapeFactoryAwt() {

@@ -1,15 +1,7 @@
 package xshape.UI;
 
-import java.awt.geom.Point2D;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-import javax.swing.JFileChooser;
 
 import xshape.UI.toolbar.IToolbar;
 import xshape.command.Invoker;
@@ -19,7 +11,7 @@ import xshape.shapeFactory.ShapeFactory;
 
 public abstract class XShape {
     private ShapeFactory _factory = null;
-    public static ArrayList<Shape> _shapes = null;
+    public ArrayList<Shape> _shapes = null;
     Group group;
     protected Invoker invoker = new Invoker();
     protected IToolbar toolbar;
@@ -75,7 +67,7 @@ public abstract class XShape {
     /*-------------------------------LOAD-------------------------- */
     
         public static void loadShapes() {
-            File fileName;
+            /*File fileName;
             ArrayList<Shape> shapes = new ArrayList<>();
             JFileChooser fileChooser = new JFileChooser();
             // FileNameExtensionFilter filter = new FileNameExtensionFilter("Shape Files", "txt");
@@ -96,12 +88,12 @@ public abstract class XShape {
             // for (Shape s : shapes){
             //     s.draw();
             //     System.out.println(s);
-            // }
+            // }*/
         }
 
     /*---------------------SAVE------------------------------------- */
     public void saveShapes(ArrayList<Shape> shapes) {
-        JFileChooser fileChooser = new JFileChooser();
+        /*JFileChooser fileChooser = new JFileChooser();
         int result = fileChooser.showSaveDialog(null);
         
         if (result == JFileChooser.APPROVE_OPTION) {
@@ -111,7 +103,7 @@ public abstract class XShape {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
     }
 
 }

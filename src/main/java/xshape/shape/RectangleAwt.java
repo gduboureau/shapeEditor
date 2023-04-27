@@ -1,6 +1,7 @@
 package xshape.shape;
 
 import java.awt.geom.Point2D;
+import java.io.Serializable;
 
 import xshape.UI.XShape;
 import xshape.UI.awt.AwtApp;
@@ -15,7 +16,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
-public class RectangleAwt extends Rectangle {
+public class RectangleAwt extends Rectangle{
 	
     private double mousePosX;
     private double mousePosY;

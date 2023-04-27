@@ -1,6 +1,15 @@
 package xshape.UI;
 
 import java.awt.geom.Point2D;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+
+import javax.swing.JFileChooser;
 
 import xshape.UI.toolbar.IToolbar;
 import xshape.command.Invoker;
@@ -10,7 +19,7 @@ import xshape.shapeFactory.ShapeFactory;
 
 public abstract class XShape {
     private ShapeFactory _factory = null;
-    Shape[] _shapes = null;
+    public static ArrayList<Shape> _shapes = null;
     Group group;
     protected Invoker invoker = new Invoker();
     protected IToolbar toolbar;
@@ -32,7 +41,13 @@ public abstract class XShape {
         Shape shape8 = _factory.createPolygon(8, 40, 325, 380);
         // shape.translate(new Point2D.Double(100, 50));
 
-        Shape[] tmp = {shape,shape3,shape4,shape7,shape8};
+        ArrayList<Shape> tmp = new ArrayList<>();
+        tmp.add(shape);
+        tmp.add(shape3);
+        tmp.add(shape4);
+        tmp.add(shape7);
+        tmp.add(shape8);
+
         _shapes = tmp;
         Shape shape5 = _factory.createRectangle(260, 320, 60, 110);
         Shape shape6 = _factory.createRectangle(260, 350, 45, 200);
@@ -54,6 +69,49 @@ public abstract class XShape {
         
         group.draw();
         group.addMouseEvents(invoker, group);
+    }
+
+
+    /*-------------------------------LOAD-------------------------- */
+    
+        public static void loadShapes() {
+            File fileName;
+            ArrayList<Shape> shapes = new ArrayList<>();
+            JFileChooser fileChooser = new JFileChooser();
+            // FileNameExtensionFilter filter = new FileNameExtensionFilter("Shape Files", "txt");
+            // fileChooser.setFileFilter(filter);
+            
+            int result = fileChooser.showOpenDialog(null);
+            if (result == JFileChooser.APPROVE_OPTION) {
+                fileName = fileChooser.getSelectedFile();
+                
+                try (ObjectInputStream is = new ObjectInputStream(new FileInputStream(fileName))) {
+                    shapes = (ArrayList<Shape>) is.readObject();
+                } catch (IOException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+            _shapes.clear();
+            _shapes.addAll(shapes);
+            // for (Shape s : shapes){
+            //     s.draw();
+            //     System.out.println(s);
+            // }
+        }
+
+    /*---------------------SAVE------------------------------------- */
+    public void saveShapes(ArrayList<Shape> shapes) {
+        JFileChooser fileChooser = new JFileChooser();
+        int result = fileChooser.showSaveDialog(null);
+        
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            try (ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(selectedFile))) {
+                os.writeObject(shapes);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 }

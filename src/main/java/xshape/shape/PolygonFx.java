@@ -10,6 +10,7 @@ import xshape.command.Invoker;
 import xshape.command.UpdateShapePos;
 
 import java.awt.geom.Point2D;
+import java.io.Serializable;
 
 public class PolygonFx extends Polygon{
 

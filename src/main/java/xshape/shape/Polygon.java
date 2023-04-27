@@ -1,8 +1,9 @@
 package xshape.shape;
 
 import java.awt.geom.Point2D;
+import java.io.Serializable;
 
-public abstract class Polygon implements Shape {
+public abstract class Polygon implements Shape, Serializable {
     
     private int numSides;
     private double sideLength;

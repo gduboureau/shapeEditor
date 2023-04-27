@@ -5,6 +5,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JToolBar;
 
+import xshape.SaveLoad.Loader;
+import xshape.SaveLoad.Saver;
+import xshape.UI.XShape;
 import xshape.UI.awt.AwtApp;
 import xshape.command.Invoker;
 import xshape.command.Test;
@@ -26,15 +29,15 @@ public class AwtToolBar implements IToolbar{
 
         JButton btnLoad = new JButton(new ImageIcon("src/main/java/xshape/UI/icons/load.png"));
         btnLoad.setToolTipText("Load");
-        btnLoad.addActionListener((event) -> {
-            Test test = new Test(event, "Implements Load");
+        btnLoad.addActionListener(event -> {
+            XShape.loadShapes();
         });
         horizontalToolBar.add(btnLoad);
 
         JButton btnSave = new JButton(new ImageIcon("src/main/java/xshape/UI/icons/save.png"));
         btnSave.setToolTipText("Save");
-        btnSave.addActionListener((event) -> {
-            Test test = new Test(event, "Implemetns Save");
+        btnSave.addActionListener(event -> {
+            Saver.saveShapes(XShape._shapes);
         });
         horizontalToolBar.add(btnSave);
 
@@ -61,7 +64,7 @@ public class AwtToolBar implements IToolbar{
         JButton btnTrash = new JButton(new ImageIcon("src/main/java/xshape/UI/icons/trash.png"));
         btnTrash.setToolTipText("Trash");
         btnTrash.addActionListener((event) -> {
-            Test test = new Test(event, "Implements Trash");
+            System.out.println(XShape._shapes);
         });
         horizontalToolBar.add(btnTrash);
 

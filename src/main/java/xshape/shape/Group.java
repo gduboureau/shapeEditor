@@ -1,13 +1,14 @@
 package xshape.shape;
 
 import java.awt.geom.Point2D;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 
 import java.util.Iterator;
 
-public abstract class Group implements Shape{
+public abstract class Group implements Shape, Serializable{
 
     List<Shape> shapeChildren;
 

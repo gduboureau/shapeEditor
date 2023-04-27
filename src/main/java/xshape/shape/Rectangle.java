@@ -1,8 +1,9 @@
 package xshape.shape;
 
 import java.awt.geom.Point2D;
+import java.io.Serializable;
 
-public abstract class Rectangle implements Shape {
+public abstract class Rectangle implements Shape, Serializable {
     private Point2D _pos  = new Point2D.Double(0, 0);
     private Point2D _size = new Point2D.Double(1, 1);
     

@@ -1,6 +1,7 @@
 package xshape.shape;
 
 import java.awt.geom.Point2D;
+import java.io.Serializable;
 import java.util.Iterator;
 
 import javafx.scene.input.MouseEvent;

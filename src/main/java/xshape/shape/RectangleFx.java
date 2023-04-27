@@ -1,6 +1,8 @@
 package xshape.shape;
 
 import java.awt.geom.Point2D;
+import java.io.Serializable;
+
 import javafx.scene.Group;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -10,7 +12,7 @@ import xshape.command.ICommand;
 import xshape.command.Invoker;
 import xshape.command.UpdateShapePos;
 
-public class RectangleFx extends Rectangle {
+public class RectangleFx extends Rectangle{
 
 	javafx.scene.shape.Rectangle _adapted = new javafx.scene.shape.Rectangle();
     Group _grp = null;

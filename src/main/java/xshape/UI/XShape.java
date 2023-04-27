@@ -22,17 +22,22 @@ public abstract class XShape {
 
     private void createScene() {
 
-        Shape shape = _factory.createRectangle(100, 100, 50, 50);
-        Shape shape2 = _factory.createRectangle(250, 250, 75, 20);
-        Shape shape3 = _factory.createPolygon(6, 100, 300, 300);
-        shape.translate(new Point2D.Double(100, 50));
+        Shape shape = _factory.createRectangle(480, 310, 130, 130);
+        // Shape shape2 = _factory.createRectangle(250, 250, 50, 25);
 
-        Shape[] tmp = {shape,shape2,shape3};
+        Shape shape3 = _factory.createPolygon(8, 150, 650, 200);
+        Shape shape4 = _factory.createRectangle(650, 300, 150, 40);
+
+        Shape shape7 = _factory.createPolygon(8, 40, 195, 380);
+        Shape shape8 = _factory.createPolygon(8, 40, 325, 380);
+        // shape.translate(new Point2D.Double(100, 50));
+
+        Shape[] tmp = {shape,shape3,shape4,shape7,shape8};
         _shapes = tmp;
-        Shape shape4 = _factory.createRectangle(400, 300, 200, 84);
-        Shape shape5 = _factory.createRectangle(785, 320, 75, 20);
+        Shape shape5 = _factory.createRectangle(260, 320, 60, 110);
+        Shape shape6 = _factory.createRectangle(260, 350, 45, 200);
         group = _factory.createGroup();
-        group.add(shape4);
+        group.add(shape6);
         group.add(shape5);
     }
 

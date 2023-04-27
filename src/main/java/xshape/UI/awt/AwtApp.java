@@ -66,7 +66,7 @@ public class AwtApp extends XShape {
         /* Création de la fenetre */
         jc = new JCanvas(this);
         jc.setBackground(Color.WHITE);
-        jc.setPreferredSize(new Dimension(500, 500));
+        jc.setPreferredSize(new Dimension(800, 600));
         GUIHelper.showOnFrame(jc, "XShape Swing/AWT Rendering");
         createToolBar();
 

@@ -10,7 +10,7 @@ public class FxApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {     
         primaryStage.setTitle("XShape JavaFx Rendering");
-        Scene _scene = new Scene(_root, 500, 500);
+        Scene _scene = new Scene(_root, 800, 600);
         primaryStage.setScene(_scene);
         primaryStage.show();
     }

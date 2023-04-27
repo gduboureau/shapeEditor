@@ -16,6 +16,7 @@ import javafx.util.Pair;
 import xshape.command.GroupCommand;
 import xshape.command.ICommand;
 import xshape.command.Invoker;
+import xshape.command.UpdatePolygonSize;
 import xshape.command.UpdateShapePos;
 
 import java.awt.geom.Point2D;
@@ -68,43 +69,44 @@ public class PolygonFx extends Polygon{
 				g.remove(this);
 			}
 			if (event.isAltDown() && event.isPrimaryButtonDown()){
-				Dialog<Pair<Double, Double>> dialog = new Dialog<>();
-				dialog.setTitle("Edit Shape Position");
-				dialog.setHeaderText("Enter new position for the shape:");
+				Dialog<Pair<Integer, Double>> dialog = new Dialog<>();
+				dialog.setTitle("Edit Polygon Size");
+				dialog.setHeaderText("Enter new size for the polygon:");
 				ButtonType applyButtonType = new ButtonType("Apply", ButtonData.OK_DONE);
 				dialog.getDialogPane().getButtonTypes().addAll(applyButtonType, ButtonType.CANCEL);
 				GridPane gridPane = new GridPane();
 				gridPane.setHgap(10);
 				gridPane.setVgap(10);
 				gridPane.setPadding(new Insets(20, 150, 10, 10));
-				TextField xField = new TextField(String.valueOf(position().getX()));
-				TextField yField = new TextField(String.valueOf(position().getY()));
-				gridPane.add(new Label("X:"), 0, 0);
-				gridPane.add(xField, 1, 0);
-				gridPane.add(new Label("Y:"), 0, 1);
-				gridPane.add(yField, 1, 1);
+				TextField numSizeField = new TextField(String.valueOf(getNumSides()));
+				TextField sizeLenghtField = new TextField(String.valueOf(sideLength()));
+				gridPane.add(new Label("numSize:"), 0, 0);
+				gridPane.add(numSizeField, 1, 0);
+				gridPane.add(new Label("sizeLenght:"), 0, 1);
+				gridPane.add(sizeLenghtField, 1, 1);
 				Node applyButton = dialog.getDialogPane().lookupButton(applyButtonType);
 				applyButton.setDisable(true);
-				xField.textProperty().addListener((observable, oldValue, newValue) -> {
-					applyButton.setDisable(newValue.trim().isEmpty() || yField.getText().trim().isEmpty());
+				numSizeField.textProperty().addListener((observable, oldValue, newValue) -> {
+					applyButton.setDisable(newValue.trim().isEmpty() || sizeLenghtField.getText().trim().isEmpty());
 				});
-				yField.textProperty().addListener((observable, oldValue, newValue) -> {
-					applyButton.setDisable(newValue.trim().isEmpty() || xField.getText().trim().isEmpty());
+				sizeLenghtField.textProperty().addListener((observable, oldValue, newValue) -> {
+					applyButton.setDisable(newValue.trim().isEmpty() || numSizeField.getText().trim().isEmpty());
 				});
 				dialog.getDialogPane().setContent(gridPane);
-				Platform.runLater(() -> xField.requestFocus());
+				Platform.runLater(() -> numSizeField.requestFocus());
 				dialog.setResultConverter(dialogButton -> {
 					if (dialogButton == applyButtonType) {
-						double x = Double.parseDouble(xField.getText());
-						double y = Double.parseDouble(yField.getText());
-						return new Pair<>(x, y);
+						int numSize = Integer.parseInt(numSizeField.getText());
+						double sizeLenght = Double.parseDouble(sizeLenghtField.getText());
+						return new Pair<>(numSize, sizeLenght);
 					}
 					return null;
 				});
-				Optional<Pair<Double, Double>> result = dialog.showAndWait();
+				Optional<Pair<Integer, Double>> result = dialog.showAndWait();
 				if (result.isPresent()) {
-					Pair<Double, Double> pair = result.get();
-					position(new Point2D.Double(pair.getKey(), pair.getValue()));
+					Pair<Integer, Double> pair = result.get();
+					ICommand command = new UpdatePolygonSize(PolygonFx.this, getNumSides(), pair.getKey(), sideLength(), pair.getValue());
+					invoker.apply(command);
 					draw();
 				}
 			}
